@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+import useDebounce from './useDebounce';
+import { fetchProducts } from './fetcher';
+
+export default function App() {
+  const [search, setSearch] = useState('');
+  const [filteredTitle, setFilteredTitle] = useState([]);
+
+  useDebounce(
+    () => {
+      console.log(search);
+      fetchData(search);
+    },
+    [search],800 );
+
+  const handleSearch = (e) => setSearch(e.target.value);
+
+  async function fetchData(searchData) {
+    const response = await fetchProducts(searchData);
+    setFilteredTitle(response)
+
+  }
+    
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <input
+        id="search"
+        type="text"
+        spellCheck="false"
+        placeholder="Search a Title"
+        value={search || ''}
+        onChange={handleSearch}
+      />
+      <div>
+        {filteredTitle&&filteredTitle.map((f) => (
+          <p key={f.id}>{f.title}</p>
+        ))}
+      </div>
+    </>
   );
 }
-
-export default App;
