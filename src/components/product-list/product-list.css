@@ -1,0 +1,41 @@
+@import "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css";
+table {
+    display: block;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
+    border: 1px solid black;
+    border-collapse: collapse;
+  
+  }
+  th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    max-width: 690px;
+    min-width: 320px;
+    text-wrap: pretty;
+    padding: 10px;
+}
+  table.fixed {table-layout:fixed;}/*Setting the table width is important!*/
+table.fixed td {overflow:hidden;}/*Hide text outside the cell.*/
+
+  table.fixed td:nth-of-type(2) {width:100px;}/*Setting the width of column 1.*/
+
+
+ .table-width{
+    width: 100%;
+ } 
+.header-bg{
+    background: #004E37;
+    color: white;
+}  
+div{
+    margin: 20px;
+}
+.pagination{
+    margin-top: 20px;
+    position: absolute;
+    right: 30px;
+}
